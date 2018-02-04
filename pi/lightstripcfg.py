@@ -1,9 +1,9 @@
 
 # AWS Endpoint
-AWSIOT = "a22jbov6j80q5s.iot.eu-west-1.amazonaws.com"
+AWSIOT = "xxxxxxxxxxxxxx.iot.eu-west-1.amazonaws.com"
 
-ROOT_CA = "rootCA.crt"
-CERTIFICATE = "119f3ffb11-certificate.pem.crt"
-PRIVATE_KEY = "119f3ffb11-private.pem.key"
+ROOT_CA = "VeriSign-Class 3-Public-Primary-Certification-Authority-G5.pem"
+CERTIFICATE = "xxxxxxxxxx-certificate.pem.crt"
+PRIVATE_KEY = "xxxxxxxxxx-private.pem.key"
 
-DEVICE_NAME = "LL01"
+DEVICE_NAME = "LS01"
