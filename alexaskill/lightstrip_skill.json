@@ -1,0 +1,214 @@
+{
+  "languageModel": {
+    "types": [
+      {
+        "name": "AnimationType",
+        "values": [
+          {
+            "id": null,
+            "name": {
+              "value": "relaxing",
+              "synonyms": [
+                "smooth",
+                "cool"
+              ]
+            }
+          },
+          {
+            "id": null,
+            "name": {
+              "value": "exciting",
+              "synonyms": [
+                "happy",
+                "party"
+              ]
+            }
+          }
+        ]
+      }
+    ],
+    "intents": [
+      {
+        "name": "AMAZON.CancelIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.HelpIntent",
+        "samples": []
+      },
+      {
+        "name": "AMAZON.StopIntent",
+        "samples": []
+      },
+      {
+        "name": "NextAnimation",
+        "samples": [
+          "next animation",
+          "another animation",
+          "show another animation",
+          "show next animation"
+        ],
+        "slots": []
+      },
+      {
+        "name": "RunAnimation",
+        "samples": [
+          "Run a {animType} animation",
+          "Launch a {animType} animation",
+          "Display a {animType} animation",
+          "Run an animation",
+          "launch an animation",
+          "show me an animation"
+        ],
+        "slots": [
+          {
+            "name": "animType",
+            "type": "AnimationType",
+            "samples": [
+              "I want a {animType} animation",
+              "{animType}"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "SetBrightness",
+        "samples": [
+          "set brightness to {brightness} percent",
+          "set brightness to {brightness}"
+        ],
+        "slots": [
+          {
+            "name": "brightness",
+            "type": "AMAZON.NUMBER",
+            "samples": [
+              "{brightness}",
+              "set to {brightness}"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "SetColor",
+        "samples": [
+          "set color to {color}"
+        ],
+        "slots": [
+          {
+            "name": "color",
+            "type": "AMAZON.Color",
+            "samples": [
+              "Set color to {color}",
+              "{color}"
+            ]
+          }
+        ]
+      },
+      {
+        "name": "StopAnimation",
+        "samples": [
+          "stop animation",
+          "stop"
+        ],
+        "slots": []
+      },
+      {
+        "name": "TurnOff",
+        "samples": [
+          "turn off",
+          "switch off"
+        ],
+        "slots": []
+      },
+      {
+        "name": "TurnOn",
+        "samples": [
+          "turn on"
+        ],
+        "slots": []
+      }
+    ],
+    "invocationName": "light strip"
+  },
+  "prompts": [
+    {
+      "id": "Elicit.Intent-RunAnimation.IntentSlot-animType",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "Do you want a relaxing or exciting animation?"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-SetBrightness.IntentSlot-brightness",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "What brightness percentage do you like?"
+        }
+      ]
+    },
+    {
+      "id": "Elicit.Intent-SetColor.IntentSlot-color",
+      "variations": [
+        {
+          "type": "PlainText",
+          "value": "What color?"
+        }
+      ]
+    }
+  ],
+  "dialog": {
+    "intents": [
+      {
+        "name": "RunAnimation",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "animType",
+            "type": "AnimationType",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-RunAnimation.IntentSlot-animType"
+            }
+          }
+        ]
+      },
+      {
+        "name": "SetBrightness",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "brightness",
+            "type": "AMAZON.NUMBER",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-SetBrightness.IntentSlot-brightness"
+            }
+          }
+        ]
+      },
+      {
+        "name": "SetColor",
+        "confirmationRequired": false,
+        "prompts": {},
+        "slots": [
+          {
+            "name": "color",
+            "type": "AMAZON.Color",
+            "elicitationRequired": true,
+            "confirmationRequired": false,
+            "prompts": {
+              "elicitation": "Elicit.Intent-SetColor.IntentSlot-color"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

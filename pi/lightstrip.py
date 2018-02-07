@@ -156,9 +156,9 @@ def get_json(reported_dict, delta_dict):
 
 	
 	
-arduino=None
+arduino = None
 port = None
-while(port==None):
+while(port == None):
 	port = get_arduino_port()
 
 	if port:
@@ -202,6 +202,8 @@ deviceShadowHandler = myAWSIoTMQTTShadowClient.createShadowHandlerWithName(cfg.D
 
 # Listen on deltas
 deviceShadowHandler.shadowRegisterDeltaCallback(customShadowCallback_Delta)
+
+time.sleep(2)
 
 aaa = get_json(get_curr_status_dict(), None)
 
