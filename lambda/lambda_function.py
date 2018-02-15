@@ -377,8 +377,8 @@ def build_speechlet_response_with_directive_nointent():
 def get_color(color_name):
     colors = {
         'white': 'FFFFFF',
-        'warm white': 'FFAAAA',
-        'cool white': 'AAAAFF',
+        'warm white': 'FFCC88',
+        'cool white': '88CCFF',
         'gray': '888888',
         'blue': '0000FF',
         'crimson': 'DC143C',
