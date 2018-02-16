@@ -15,7 +15,7 @@ import random
 import boto3
 
 
-THING_NAME = 'LL01'
+THING_NAME = 'LS01'
 
 
 # Animations and palettes for ALA library
@@ -50,6 +50,7 @@ ANIM_FADEIN=301
 ANIM_FADEOUT=302
 ANIM_FADEINOUT=303
 ANIM_GLOW=304
+ANIM_PLASMA=305
 
 ANIM_FADECOLORS=351
 ANIM_FADECOLORSLOOP=352
@@ -66,22 +67,34 @@ PAL_RAINBOW=2
 PAL_PARTY=3
 PAL_HEAT=4
 PAL_FIRE=5
+PAL_COOL=6
 
 
 anim_relaxing = []
-anim_relaxing.append({'animation': ANIM_PIXELSFADECOLORS, 'palette': PAL_PARTY,   'duration': 2000 })
-anim_relaxing.append({'animation': ANIM_SPARKLE2,         'palette': PAL_PARTY,   'duration': 2000 })
-anim_relaxing.append({'animation': ANIM_SPARKLE,          'palette': PAL_RAINBOW, 'duration': 1000 })
-anim_relaxing.append({'animation': ANIM_FADECOLORSLOOP,   'palette': PAL_RGB,     'duration': 8000 })
-anim_relaxing.append({'animation': ANIM_COMET,            'palette': PAL_RGB,     'duration': 1000 })
-anim_relaxing.append({'animation': ANIM_LARSONSCANNER2,   'palette': PAL_NONE,    'color':  'FF0000',     'duration': 1000 })
+anim_relaxing.append({'animation': ANIM_PIXELSFADECOLORS, 'duration': 20000, 'palette': PAL_RGB })
+anim_relaxing.append({'animation': ANIM_FADECOLORSLOOP,   'duration': 15000, 'palette': PAL_COOL })
+anim_relaxing.append({'animation': ANIM_MOVINGGRADIENT,   'duration': 10000, 'palette': PAL_RGB })
+anim_relaxing.append({'animation': ANIM_COMET,            'duration': 8000,  'palette': PAL_NONE,   'color':  '8800FF' })
+anim_relaxing.append({'animation': ANIM_COMETCOL,         'duration': 10000, 'palette': PAL_RGB })
+anim_relaxing.append({'animation': ANIM_LARSONSCANNER,    'duration': 15000, 'palette': PAL_NONE,   'color':  '00FF00' })
+anim_relaxing.append({'animation': ANIM_PIXELSFADECOLORS, 'duration': 8000,  'palette': PAL_RGB })
+anim_relaxing.append({'animation': ANIM_PIXELSFADECOLORS, 'duration': 8000,  'palette': PAL_HEAT })
+anim_relaxing.append({'animation': ANIM_PIXELSFADECOLORS, 'duration': 5000,  'palette': PAL_COOL })
+anim_relaxing.append({'animation': ANIM_PLASMA,           'duration': 5000,  'palette': PAL_COOL })
+
+
 
 anim_exciting = []
-anim_exciting.append({'animation': ANIM_PIXELSFADECOLORS, 'palette': PAL_HEAT,   'duration': 200 })
-anim_exciting.append({'animation': ANIM_SPARKLE2,         'palette': PAL_HEAT,   'duration': 200 })
-anim_exciting.append({'animation': ANIM_SPARKLE,          'palette': PAL_HEAT, 'duration': 100 })
-anim_exciting.append({'animation': ANIM_FADECOLORSLOOP,   'palette': PAL_HEAT,     'duration': 800 })
-anim_exciting.append({'animation': ANIM_COMET,            'palette': PAL_HEAT,     'duration': 100 })
+anim_exciting.append({'animation': ANIM_PIXELSFADECOLORS, 'duration': 2000,   'palette': PAL_PARTY })
+anim_exciting.append({'animation': ANIM_SPARKLE2,         'duration': 200,    'palette': PAL_PARTY })
+anim_exciting.append({'animation': ANIM_SPARKLE2,         'duration': 300,    'palette': PAL_COOL })
+anim_exciting.append({'animation': ANIM_FADECOLORSLOOP,   'duration': 2000,   'palette': PAL_RAINBOW })
+anim_exciting.append({'animation': ANIM_FADECOLORSLOOP,   'duration': 2000,   'palette': PAL_COOL })
+anim_exciting.append({'animation': ANIM_COMET,            'duration': 1200,   'palette': PAL_RAINBOW })
+anim_exciting.append({'animation': ANIM_MOVINGGRADIENT,   'duration': 2000,   'palette': PAL_HEAT })
+anim_exciting.append({'animation': ANIM_LARSONSCANNER2,   'duration': 2000,   'palette': PAL_NONE,   'color':  'FF0000' })
+anim_exciting.append({'animation': ANIM_LARSONSCANNER,    'duration': 3000,   'palette': PAL_PARTY })
+anim_exciting.append({'animation': ANIM_BOUNCINGBALLS,    'duration': 1000,   'palette': PAL_RGB })
 
 
 client = boto3.client('iot-data')
