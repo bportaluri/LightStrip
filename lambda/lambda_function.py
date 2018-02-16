@@ -57,6 +57,7 @@ def on_intent(intent_request, session):
     """ Called when the user specifies an intent for this skill """
 
     print("on_intent requestId=" + intent_request['requestId'] + ", sessionId=" + session['sessionId'])
+    #print(session)
 
     intent = intent_request['intent']
     intent_name = intent_request['intent']['name']
@@ -112,9 +113,11 @@ def intent_start():
     return build_response(session_attributes, speechlet_response)
 
 def intent_help():
+    session_attributes = {}
+    if 'attributes' in session:
+        session_attributes = session['attributes']
 
-    session_attributes = session['attributes']
-    speech_text = "With LightStrip you can control your lights or you can run some animations. " \
+        speech_text = "With LightStrip you can control your lights or you can run some animations. " \
                   "To switch on a white light you can just say 'turn on'. " \
                   "To try out an animation say 'run an animation'."
     reprompt_text = None
@@ -129,7 +132,7 @@ def intent_help():
 def intent_end():
     # say bye and close session
 
-    #ala_controller.thingshadow_turn_off()
+    ala_controller.thingshadow_turn_off()
     
     session_attributes = {}
     speech_text = "Thank you for using LightStrip. Bye!"
@@ -174,7 +177,9 @@ def intent_turn_off(intent, session):
 
 
 def intent_set_brightness(intent, session):
-    session_attributes = session['attributes']
+    session_attributes = {}
+    if 'attributes' in session:
+        session_attributes = session['attributes']
     
     if 'brightness' not in intent['slots']:
         return build_response(session_attributes, build_speechlet_response_with_directive_nointent())
@@ -201,7 +206,9 @@ def intent_set_brightness(intent, session):
 
 
 def intent_set_color(intent, session):
-    session_attributes = session['attributes']
+    session_attributes = {}
+    if 'attributes' in session:
+        session_attributes = session['attributes']
 
     if 'color' not in intent['slots']:
         return build_response(session_attributes, build_speechlet_response_with_directive_nointent())
@@ -239,8 +246,9 @@ def intent_set_color(intent, session):
 
 
 def intent_run_animation(intent, session):
-
-    session_attributes = session['attributes']
+    session_attributes = {}
+    if 'attributes' in session:
+        session_attributes = session['attributes']
 
     if 'value' not in intent['slots']['animType']:
         return build_response(session_attributes, build_speechlet_response_with_directive_nointent())
@@ -272,10 +280,11 @@ def intent_run_animation(intent, session):
 
 
 def intent_next_animation(intent, session):
-    session_attributes = session['attributes']
+    session_attributes = {}
+    if 'attributes' in session:
+        session_attributes = session['attributes']
     
     if session['attributes']['status'] != 'animation':
-        session_attributes = session['attributes']
         speech_text = "Invalid command"
         reprompt_text = None
         card_title = None
@@ -302,10 +311,11 @@ def intent_next_animation(intent, session):
 
 
 def intent_stop_animation(intent, session):
-    session_attributes = session['attributes']
+    session_attributes = {}
+    if 'attributes' in session:
+        session_attributes = session['attributes']
     
     if session['attributes']['status'] != 'animation':
-        session_attributes = session['attributes']
         speech_text = "Invalid command"
         reprompt_text = None
         card_title = None
@@ -385,9 +395,9 @@ def get_color(color_name):
         'cyan': '00FFFF',
         'fuchsia': 'FF00FF',
         'gold': 'FFD700',
-        'green': '0000ff',
-        'lavender': '0000ff',
-        'lime': '00FF00',
+        'green': '00FF00',
+        'lavender': 'E6E6FA',
+        'lime': '32CD32',
         'magenta': 'FF00FF',
         'orange': 'FFA500',
         'pink': 'FFC0CB',
