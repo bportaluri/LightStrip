@@ -167,7 +167,7 @@ def intent_turn_off(intent, session):
     session_attributes = {'status':'off'}
     speech_text = "Turned off"
     reprompt_text = None
-    card_title = "Turn of"
+    card_title = "Turn off"
     card_text = None
     end_session = False
     
